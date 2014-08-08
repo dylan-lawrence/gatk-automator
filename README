@@ -1,0 +1,24 @@
+Python GATK Autorun
+
+This Python script uses the tk GUI to help automate a run of genomic analysis.
+
+This software is designed to perform a run from pure reads (.fasta and .fastq files) through all of BWA
+and preprocessing using SAM and Picard tools. Finally this will allow you to run GATK as well as multiple realignments
+around indels for purifying SNP reads.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Current Progress:
+
+-August 8th, 2014
+Initial upload of file, currently BWA functions should be working, but there is no guarantee that the produced SAM file
+is correct at this time
+
+------------------------------------------------------------------------------------------------------------------------
+
+This software is open source and free to use by anyone. If you wish to provide a modified version of this software
+please provide credit to Dylan Lawrence (dlawre14@slu.edu) for the original program. 
+
+------------------------------------------------------------------------------------------------------------------------
+
+For any questions please email dlawre14@slu.edu
