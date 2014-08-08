@@ -18,3 +18,8 @@ This software is open source and free to use by anyone. If you wish to provide a
 --------------------------------------------
 
 For any questions please email dlawre14@slu.edu
+
+--------------------------------------------
+
+Author Notes:
+Currently this is contained in one very large file. Eventually each class will be delegated to its own file and the whole thing will get a .pyc conversion to make everything easier to use. Bear with during these early stages where it's still one massive, unwieldy, file.
