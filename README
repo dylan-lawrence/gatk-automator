@@ -6,10 +6,13 @@ This software is designed to perform a run from pure reads (.fasta and .fastq fi
 
 --------------------------------------------
 
-Current Progress:
+Major Updates:
 
 -August 8th, 2014
-Initial upload of file, currently BWA functions should be working, but there is no guarantee that the produced SAM file is correct at this time
+Initial upload of file, currently BWA functions should be working, but there is no guarantee that the produced SAM file is correct at this time.
+
+-August 12th 2014
+Reorganized class files in to seperate files, add source code directory, cleaned up UI and added sleectable output directory. Still only able to handle BWA steps.
 
 --------------------------------------------
 
@@ -21,5 +24,7 @@ For any questions please email dlawre14@slu.edu
 
 --------------------------------------------
 
-Author Notes:
-Currently this is contained in one very large file. Eventually each class will be delegated to its own file and the whole thing will get a .pyc conversion to make everything easier to use. Bear with during these early stages where it's still one massive, unwieldy, file.
+To Do List:
+
+-Add documentation and clarity to files
+-Modify directory selector to allow for creation of directories

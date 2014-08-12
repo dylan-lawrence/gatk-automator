@@ -118,7 +118,7 @@ class AppGATK(Frame):
 	#this is the output directoyr
 	self.out_dir_path.config(state = NORMAL)
 	self.out_dir_path.delete(1.0, END)
-	file_name = tkfd.askdirectory(parent=self, title='Select SamTools directory')
+	file_name = tkfd.askdirectory(parent=self, title='Select output directory')
 	self.out_dir_path.insert(INSERT, file_name)
 	self.out_dir_path.config(state = DISABLED)
 	
@@ -161,7 +161,7 @@ class AppGATK(Frame):
 	fastq = bwa_prompt2.getFastq()
 	sam_out = bwa_prompt2.getSAM()
 	
-	sam_file = file(sam_out + '.sam', 'w') 
+	sam_file = file(out_directory + '/' + sam_out + '.sam', 'w') 
 	
 	if bwa_prompt2.useP():
 	   p = subprocess.Popen([bwa_path + '/bwa', 'mem', '-t', cores, '-p', '-v', '1', index_name, fastq], stdout=sam_file)
