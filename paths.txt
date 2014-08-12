@@ -1,3 +1,0 @@
-/home/dylan/Genomics/bwa-0.7.10
-/home/dylan/Genomics/picard-tools-1.117
-/home/dylan/Genomics/samtools-0.1.19
