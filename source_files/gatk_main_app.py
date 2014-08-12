@@ -41,8 +41,18 @@ class AppGATK(Frame):
       self.samtools_directory_button = Button(self, text='Browse', command = lambda:self.file_select('2'))
       self.samtools_directory_button.grid(row=5, column=1, sticky = W, padx = 10, pady = 10)
       
+      self.out_dir_label = Label(self, text='Output Directory')
+      self.out_dir_label.grid(row = 6, column = 0, sticky = W)
+      
+      self.out_dir_path = Text(self, width = 65, height = 1, background='white')
+      self.out_dir_path.grid(row = 7, column = 0, sticky = W)
+      self.out_dir_path.config(state = DISABLED)
+      
+      self.out_dir_button = Button(self, text='Browse', command = lambda:self.file_select('3'))
+      self.out_dir_button.grid(row = 7, column = 1, sticky = W, padx = 10, pady = 10)
+      
       self.run_button = Button(self, text='Begin Processing', command = self.run)
-      self.run_button.grid(row = 5, column = 2, sticky = W)
+      self.run_button.grid(row = 8, column = 0, columnspan = 3, pady = 10)
    
    def read_saved_paths(self, path_file):
       self.bwa_directory_path.config(state = NORMAL)
@@ -90,30 +100,39 @@ class AppGATK(Frame):
 	with open('paths.txt', 'w') as file:
 	  file.writelines(lines)
 			 
-      else:
+      elif file_type=='2':
 	#this is samtools_directory
 	self.samtools_directory_path.config(state = NORMAL)
 	self.samtools_directory_path.delete(1.0, END)
 	file_name = tkfd.askdirectory(parent=self, title='Select SamTools directory')
 	self.samtools_directory_path.insert(INSERT, file_name)
-	self.picard_directory_path.config(state = DISABLED)
+	self.samtools_directory_path.config(state = DISABLED)
 	
 	with open('paths.txt', 'r') as file:
 	  lines = file.readlines()
 	lines[2] = file_name + '\n'
 	with open('paths.txt', 'w') as file:
 	  file.writelines(lines)
+	  
+      else:
+	#this is the output directoyr
+	self.out_dir_path.config(state = NORMAL)
+	self.out_dir_path.delete(1.0, END)
+	file_name = tkfd.askdirectory(parent=self, title='Select SamTools directory')
+	self.out_dir_path.insert(INSERT, file_name)
+	self.out_dir_path.config(state = DISABLED)
 	
    def run(self):
      #runs the tools
      
-     if (self.bwa_directory_path.get(1.0,END).rstrip('\n') == '' or self.picard_directory_path.get(1.0,END).rstrip('\n') == '' or self.samtools_directory_path.get(1.0,END).rstrip('\n') == ''):
+     if (self.bwa_directory_path.get(1.0,END).rstrip('\n') == '' or self.picard_directory_path.get(1.0,END).rstrip('\n') == '' or self.samtools_directory_path.get(1.0,END).rstrip('\n') == '' or self.out_dir_path.get(1.0,END).rstrip('\n') == ''):
        tkMessageBox.showerror('Process Error', 'The tools directories are not entered, aborting...')
        return
      
      bwa_prompt = BWAPopup1(self)
      index_name = None
      bwa_path = None
+     out_directory = self.out_dir_path.get(1.0, END).rstrip('\n')
      self.wait_window(bwa_prompt)
      
      sleep(0.25)
@@ -126,7 +145,7 @@ class AppGATK(Frame):
         index_name = bwa_prompt.getFileNameInput()
         fasta_path = bwa_prompt.getPathInput()
         
-	p = subprocess.Popen([bwa_path + '/bwa', 'index', '-a', 'bwtsw', '-p', index_name, fasta_path])
+	p = subprocess.Popen([bwa_path + '/bwa', 'index', '-a', 'bwtsw', '-p', out_directory + '/' + index_name, fasta_path])
 	p.wait()
     
      bwa_prompt2 = BWAPopup2(self, index_name)
