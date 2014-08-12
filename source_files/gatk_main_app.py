@@ -66,7 +66,7 @@ class AppGATK(Frame):
 	#this is bwa_directory
 	self.bwa_directory_path.config(state = NORMAL)
 	self.bwa_directory_path.delete(1.0, END)
-	file_name = tkfd.askdirectory(parent=root, title='Select BWA Aligner directory')
+	file_name = tkfd.askdirectory(parent=self, title='Select BWA Aligner directory')
 	self.bwa_directory_path.insert(INSERT, file_name)
 	self.bwa_directory_path.config(state = DISABLED)
 	
@@ -80,7 +80,7 @@ class AppGATK(Frame):
 	#this is picard_directory
 	self.picard_directory_path.config(state = NORMAL)
 	self.picard_directory_path.delete(1.0, END)
-	file_name = tkfd.askdirectory(parent=root, title='Select Picard Tools directory')
+	file_name = tkfd.askdirectory(parent=self, title='Select Picard Tools directory')
 	self.picard_directory_path.insert(INSERT, file_name)
 	self.picard_directory_path.config(state = DISABLED)
 	
@@ -94,7 +94,7 @@ class AppGATK(Frame):
 	#this is samtools_directory
 	self.samtools_directory_path.config(state = NORMAL)
 	self.samtools_directory_path.delete(1.0, END)
-	file_name = tkfd.askdirectory(parent=root, title='Select SamTools directory')
+	file_name = tkfd.askdirectory(parent=self, title='Select SamTools directory')
 	self.samtools_directory_path.insert(INSERT, file_name)
 	self.picard_directory_path.config(state = DISABLED)
 	
